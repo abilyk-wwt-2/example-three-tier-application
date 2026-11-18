@@ -18,6 +18,8 @@ Browser → Web (Next.js :3000) → API (Express :3001) → PostgreSQL
 
 The app is a simple task manager (to-do list) that demonstrates how the three tiers communicate.
 
+For a full list of libraries, runtimes, Terraform providers and CI actions, see [DEPENDENCIES.md](DEPENDENCIES.md).
+
 ## Running locally with Docker Compose
 
 ### Prerequisites
