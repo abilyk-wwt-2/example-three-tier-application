@@ -10,9 +10,20 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
 
-// GET /tasks — list all tasks
-app.get('/tasks', async (_req, res) => {
-  const { rows } = await db.query('SELECT * FROM tasks ORDER BY created_at ASC');
+// GET /tasks — list all tasks with optional sorting
+app.get('/tasks', async (req, res) => {
+  const { sort } = req.query;
+  
+  let orderBy = 'created_at ASC';
+  
+  if (sort === 'alphabetical') {
+    orderBy = 'title ASC';
+  } else if (sort === 'date-desc') {
+    orderBy = 'created_at DESC';
+  }
+  // Default is 'date-asc' (created_at ASC)
+  
+  const { rows } = await db.query(`SELECT * FROM tasks ORDER BY ${orderBy}`);
   res.json(rows);
 });
 
