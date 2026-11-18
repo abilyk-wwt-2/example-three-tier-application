@@ -16,6 +16,12 @@ app.get('/tasks', async (_req, res) => {
   res.json(rows);
 });
 
+// GET /tasks/count — get total number of tasks
+app.get('/tasks/count', async (_req, res) => {
+  const { rows } = await db.query('SELECT COUNT(*) as count FROM tasks');
+  res.json({ count: parseInt(rows[0].count, 10) });
+});
+
 // POST /tasks — create a task
 app.post('/tasks', async (req, res) => {
   const { title } = req.body;
