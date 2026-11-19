@@ -9,6 +9,7 @@ export type Task = {
   title: string;
   completed: boolean;
   created_at: string;
+  deleted_at?: string | null;
 };
 
 export async function getTasks(): Promise<Task[]> {
@@ -32,6 +33,14 @@ export async function toggleTask(id: number, completed: boolean) {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ completed }),
+  });
+  revalidatePath('/');
+}
+
+export async function deleteTask(id: number) {
+  await fetch(`${API_URL}/tasks/${id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
   });
   revalidatePath('/');
 }
