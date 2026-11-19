@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "My To-Do List",
-  description: "A simple and elegant task management application",
+  title: "TaskFlow - Intelligent Task Management",
+  description: "A modern, full-stack task management application demonstrating three-tier architecture with Next.js, Express, and PostgreSQL",
 };
 
 export default function RootLayout({
